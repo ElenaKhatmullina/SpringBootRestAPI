@@ -9,7 +9,8 @@ import javax.persistence.*;
 public class City {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @SequenceGenerator(name = "pk_sequence", sequenceName = "entity_id_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "pk_sequence")
     private Integer id;
     @Column(name = "name")
     private String name;
@@ -21,8 +22,8 @@ public class City {
     private short age;
 
     @JsonBackReference
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="country_id", nullable=false)
+    @ManyToOne
+    @JoinColumn(name = "country")
     private Country country;
 
 
@@ -39,13 +40,6 @@ public class City {
         this.country = country;
     }
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;

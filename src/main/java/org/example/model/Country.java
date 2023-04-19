@@ -1,8 +1,6 @@
 package org.example.model;
 
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import java.util.List;
 import javax.persistence.*;
 
@@ -10,7 +8,8 @@ import javax.persistence.*;
 @Table(name = "countries")
 public class Country {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @SequenceGenerator(name = "pk_sequence", sequenceName = "entity_id_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "pk_sequence")
     private Integer id;
 
     @Column(name = "name")
@@ -21,23 +20,18 @@ public class Country {
 
     @Column(name = "population")
     private int population;
-
-    @JsonManagedReference
-    @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "country_id")
+    @OneToMany(mappedBy = "country")
     private List<City> allCitiesInCountry;
 
     public Country() {
 
     }
 
-    public Country(Integer id, String name, double area, int population) {
-        this.id = id;
+    public Country(String name, double area, int population) {
         this.name = name;
         this.area = area;
         this.population = population;
     }
-
 
     public String getName() {
         return name;
