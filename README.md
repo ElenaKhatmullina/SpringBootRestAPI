@@ -33,6 +33,7 @@ curl -v http://localhost:8080
 ___
 ### Подготовленные запросы:
 Коллекция запросов Postman находится в папке resource: CollectionForRestAPICountriesAndCities.postman_collection.json
+
 Импортировав коллекцию в Postman, вы можете сгенерировать на основе  имеющихся http запросов curl и wget запросы.
 Для этого откройте запрос, который вы хотите использовать для фрагмента кода, затем выберите значок кода </> на правой панели. 
 Выберите в Code snippet значение в выпадающем списке, curl или  Shell - wget
