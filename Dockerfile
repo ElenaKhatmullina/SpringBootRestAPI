@@ -12,6 +12,10 @@ ARG WAR_FILE=target/demo-*.war
 # cp target/demo-0.0.1-SNAPSHOT.jar /app/demo.jar
 COPY ${WAR_FILE} demo.war
 
+USER root
+RUN groupadd -g <groupid>  docker && usermod -aG docker jenkins
+USER jenkins
+
 # java -jar /app/demo.war
 CMD ["java", "-war", "-Xmx1024M", "/app/demo.war"]
 
