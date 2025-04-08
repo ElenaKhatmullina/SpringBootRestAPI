@@ -24,6 +24,15 @@ services:
 volumes:
   db-data:
     driver: local
-      - /var/jenkins_home
-      - /var/run/docker.sock:/var/run/docker.sock
+
+jenkins:
+  container_name: jenkins
+  build: "jenkins/"
+  ports:
+    - "8082:8082"
+  environment:
+    - JAVA_OPTS:-Djava.awt.headless=true
+  volumes:
+    - /var/jenkins_home
+    - /var/run/docker.sock:/var/run/docker.sock
 
