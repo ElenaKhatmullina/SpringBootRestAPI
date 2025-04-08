@@ -24,6 +24,7 @@ pipeline {
     }
   stage('docker-compose start') {
       steps {
+       sh 'docker run -privileged -t -i jpetazzo/dind'
        sh 'docker compose up -d'
       }
     }
