@@ -13,7 +13,7 @@ ARG WAR_FILE=target/demo-*.war
 COPY ${WAR_FILE} demo.war
 
 USER root
-RUN groupadd -g docker  docker && usermod -aG docker jenkins
+RUN groupadd -g dockergroup docker && usermod -aG docker jenkins
 USER jenkins
 
 # java -jar /app/demo.war
